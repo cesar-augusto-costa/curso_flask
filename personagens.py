@@ -41,21 +41,22 @@ def retorna_personagem(personagem):
 
 app = Flask(__name__)
 
-@app.route("/")
-def teste():
-    return retorna_personagem(dicionario[1])
-
-@app.route("/personagem")
-def mostrar_personagem():
-    return render_template('personagem.html', **dicionario[1])
-
-
-@app.route("/personagens/<int:personagem_id>")
-def mostrar_personagens_id(personagem_id):
+@app.route("/personagem/<int:personagem_id>")
+def mostrar_personagem_id(personagem_id):
     return render_template('personagem.html', **dicionario[personagem_id])
 
 @app.route("/personagem_boot/<int:personagem_id>")
-def mostrar_personagens_boot_id(personagem_id):
+def mostrar_personagem_boot_id(personagem_id):
     return render_template('personagem_boot.html', **dicionario[personagem_id])
+
+@app.route("/personagens")
+def mostrar_personagens(): 
+    return render_template('personagens.html', personagens=dicionario)
+
+@app.route("/personagens_boot")
+def mostrar_personagens_boot(): 
+    return render_template('personagens_boot.html', personagens=dicionario)
+
+
 
 app.run(debug=True)

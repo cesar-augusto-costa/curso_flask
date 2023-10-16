@@ -35,11 +35,15 @@ dicionario = {
     },
 }
 
-def retorna_personagem(personagem):
-    texto_retorno = f'<h1>{personagem["nome"]}</h1><p>É {personagem["raça"]} e sua casa é a {personagem["casa"]}</p>'
-    return texto_retorno
-
 app = Flask(__name__)
+
+@app.route("/")
+def mostrar_dicionario():
+    return dicionario
+
+@app.route("/dicionario/<int:personagem_id>")
+def mostrar_dicionario_1(personagem_id):
+    return dicionario[personagem_id]
 
 @app.route("/personagem/<int:personagem_id>")
 def mostrar_personagem_id(personagem_id):
@@ -56,7 +60,5 @@ def mostrar_personagens():
 @app.route("/personagens_boot")
 def mostrar_personagens_boot(): 
     return render_template('personagens_boot.html', personagens=dicionario)
-
-
 
 app.run(debug=True)

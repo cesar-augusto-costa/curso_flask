@@ -7,11 +7,11 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
 </head>
 <body>
-    {% for %}
+    {% for id, personagem in personagens.items() %}
     <div class="container">
-        <h1>{{nome}}</h1>
-        <img height="200px" src="{{imagem}}" alt="{{nome}}">
-        <p>É da raça {{raça}} e estuda na {{casa}}</p>
+        <h1>{{personagem['nome']}}</h1>
+        <img height="200px" src="{{personagem['imagem']}}" alt="{{personagem['nome']}}">
+        <p>É da raça {{personagem['raça']}} e estuda na {{personagem['casa']}}</p>
     </div>
     {% endfor %}
 </body>
